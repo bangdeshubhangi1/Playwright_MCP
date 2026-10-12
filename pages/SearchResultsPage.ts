@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 
 export class SearchResultsPage {
   private readonly page: Page;
@@ -22,10 +22,26 @@ export class SearchResultsPage {
   }
 
   /**
+   * Verifies an exact product is available in the current product listing.
+   * @param productName - Product name to find
+   * @returns true when a matching product link is visible
+   */
+  async isProductDisplayed(productName: string): Promise<boolean> {
+    return this.productLink(productName).isVisible();
+  }
+
+  /**
    * Opens an exact product result.
    * @param productName - Product name to open
    */
   async openProduct(productName: string): Promise<void> {
-    await this.page.getByRole('link', { name: productName, exact: true }).first().click();
+    await this.productLink(productName).click();
+  }
+
+  private productLink(productName: string): Locator {
+    return this.page
+      .locator('#content .product-thumb h4')
+      .filter({ hasText: productName })
+      .getByRole('link', { name: productName, exact: true });
   }
 }

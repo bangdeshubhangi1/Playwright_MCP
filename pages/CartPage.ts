@@ -30,6 +30,15 @@ export class CartPage {
   }
 
   /**
+   * Reads the product name and selected options shown in the cart.
+   * @param productName - Product name in the cart
+   * @returns the product-details cell text
+   */
+  async getProductDetails(productName: string): Promise<string> {
+    return this.productRow(productName).getByRole('cell').nth(1).innerText();
+  }
+
+  /**
    * Reads the unit price for a cart product.
    * @param productName - Product name in the cart
    * @returns the unit-price cell text

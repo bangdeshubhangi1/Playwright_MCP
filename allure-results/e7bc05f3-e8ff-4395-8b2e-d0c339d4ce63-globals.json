@@ -1,0 +1,1 @@
+{"attachments":[],"errors":[{"message":"afterEach hook failed: TypeError: Cannot read properties of null (reading 'isClosed')","trace":"TypeError: Cannot read properties of null (reading 'isClosed')\n    at D:\\Shubhangi\\ShopHub\\Playright_Automation\\Playwright_MCP\\fixtures\\pageFixtures.ts:51:13","timestamp":1791787927685}]}

@@ -24,7 +24,7 @@ type PageFixtures = {
 
 export const test = base.extend<PageFixtures>({
   homePage: async ({ page }, use) => {
-    await page.goto(appUrl!);
+    await page.goto(appUrl!, { waitUntil: 'domcontentloaded' });
     await use(new HomePage(page));
   },
   registrationPage: async ({ page }, use) => {
@@ -45,13 +45,6 @@ export const test = base.extend<PageFixtures>({
   cartPage: async ({ page }, use) => {
     await use(new CartPage(page));
   },
-});
-
-test.afterEach(async ({ page, context }) => {
-  if (!page.isClosed()) {
-    await page.close();
-  }
-  await context.close();
 });
 
 export { expect } from '@playwright/test';

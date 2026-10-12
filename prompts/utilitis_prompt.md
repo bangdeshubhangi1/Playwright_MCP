@@ -34,9 +34,10 @@ Create and export a class named `Helper` with exactly these static methods:
 
 Return exactly this object structure:
 
-- `productName: "MacBook"`
+- `productName: "Product 8"`
 - `productQuantity: "1"`
-- `totalPrice: "$602.00"`
+- `productPrice: "$122.00"`
+- `totalPrice: "$140.00"` (Product 8 with the Large size option)
 
 ### 1.3 `getLoginDetails()`
 

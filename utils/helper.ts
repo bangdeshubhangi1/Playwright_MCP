@@ -5,9 +5,10 @@ export class Helper {
 
   static getProductDetails() {
     return {
-      productName: 'MacBook',
+      productName: 'Product 8',
       productQuantity: '1',
-      totalPrice: '$602.00',
+      productPrice: '$122.00',
+      totalPrice: '$140.00',
     };
   }
 

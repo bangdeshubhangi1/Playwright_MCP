@@ -6,7 +6,6 @@ export class HomePage {
   // Locators
   private readonly accountMenuLink;
   private readonly searchInput;
-  private readonly shoppingCartLink;
 
   constructor(page: Page) {
     this.page = page;
@@ -14,7 +13,6 @@ export class HomePage {
     // Initialize locators with CSS selectors
     this.accountMenuLink = page.getByRole('link', { name: /My Account/ }).first();
     this.searchInput = page.getByRole('textbox', { name: 'Search' });
-    this.shoppingCartLink = page.getByRole('link', { name: /Shopping Cart/ });
   }
 
   /**
@@ -34,6 +32,15 @@ export class HomePage {
   }
 
   /**
+   * Opens the full Desktops category from the main navigation.
+   */
+  async openAllDesktops(): Promise<void> {
+    const desktopsMenu = this.page.locator('#menu').getByRole('link', { name: 'Desktops', exact: true });
+    await desktopsMenu.hover();
+    await this.page.locator('#menu').getByRole('link', { name: /Show All\s*Desktops/ }).click();
+  }
+
+  /**
    * Searches for a product.
    * @param productName - Product name to search for
    */
@@ -46,6 +53,8 @@ export class HomePage {
    * Opens the shopping cart.
    */
   async openShoppingCart(): Promise<void> {
-    await this.shoppingCartLink.click();
+    const cartDropdown = this.page.locator('#cart');
+    await cartDropdown.getByRole('button').click();
+    await cartDropdown.getByRole('link', { name: /View Cart/ }).click();
   }
 }

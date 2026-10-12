@@ -36,6 +36,21 @@ export class ProductPage {
   }
 
   /**
+   * Verifies the product is available to purchase.
+   */
+  async isInStock(): Promise<boolean> {
+    return this.page.getByText(/Availability:\s*In Stock/).isVisible();
+  }
+
+  /**
+   * Selects a product option by its visible label.
+   * @param optionLabel - Exact option label to select
+   */
+  async selectSize(optionLabel: string): Promise<void> {
+    await this.page.getByLabel('Size').selectOption({ label: optionLabel });
+  }
+
+  /**
    * Sets the requested product quantity.
    * @param quantity - Quantity to add
    */
